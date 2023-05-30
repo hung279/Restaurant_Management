@@ -4,15 +4,14 @@
  */
 package UI;
 
-/**
- *
- * @author Đoàn Hữu Minh
- */
+import file.GetData;
+import java.util.List;
+import javax.swing.JOptionPane;
+import model.User;
+
 public class Login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Login
-     */
+    
     public Login() {
         initComponents();
     }
@@ -102,7 +101,7 @@ public class Login extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
         jLabel4.setText("Login");
 
-        jLabel5.setText("Email");
+        jLabel5.setText("Username");
 
         jpassword_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,8 +187,50 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jpassword_loginActionPerformed
 
+    
+    private static GetData getData = new GetData();
+    private static List<User> listUser = getData.getDataUserFromFile();
     private void button_login1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_login1ActionPerformed
-        // TODO add your handling code here:
+        String username = jusername_login.getText();
+        char[] passwordChars = jpassword_login.getPassword();
+        String password = new String(passwordChars);
+        
+        if(username.equals("") || password.equals("")){
+            JOptionPane.showMessageDialog(this, "You need enter fill all username and password");
+        }else{
+        for (User user : listUser) {
+            System.out.println(user.toString());
+        }
+            System.out.println("username : " + username);
+            System.out.println("password : " + password);
+            boolean flag = false;
+        for(User item : listUser){
+            if(item.getUsername().equals(username.trim()) 
+                    && item.getPassword().equals(password.trim())
+                    && item.getRole().equals("ROLE_USER")){
+                JOptionPane.showMessageDialog(this,
+                        String.format( "Login sucess!\n Hello %s  , Welcome back" , item.getFullname()));
+                UserFrame userFrame = new UserFrame();
+                userFrame.setVisible(true);
+                flag= true; break;
+            }
+            
+            if(item.getUsername().equals(username.trim()) && 
+                item.getPassword().equals(password.trim()) && 
+                item.getRole().equals("ROLE_ADMIN")){
+                 JOptionPane.showMessageDialog(this,"HELLO ADMIN , WELCOME BACK!");
+                Admin admin = new Admin();
+                admin.setVisible(true);
+                flag= true; break;
+            }
+            
+        }
+        if(!flag){
+            JOptionPane.showMessageDialog(this, "Please, check your username and your password again");
+         }
+            jusername_login.setText("");
+            jpassword_login.setText("");
+        }
     }//GEN-LAST:event_button_login1ActionPerformed
 
     /**

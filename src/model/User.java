@@ -9,16 +9,16 @@ package model;
  * @author Đoàn Hữu Minh
  */
 public class User {
-    //su dung id tu sinh 
+    
     private String id;
     
     private String fullname;
     
     private String phone;
     
-    private boolean gender;
+    private String gender;
     
-    private String email;
+    private String username;
     
     private String password;
     
@@ -27,14 +27,13 @@ public class User {
     public User() {
     }
     
-    
-
-    public User(String id, String fullname, String phone, boolean gender, String email, String password, String role) {
+   
+    public User(String id, String fullname, String phone, String gender, String username, String password, String role) {
         this.id = id;
         this.fullname = fullname;
         this.phone = phone;
         this.gender = gender;
-        this.email = email;
+        this.username = username;
         this.password = password;
         this.role = role;
     }
@@ -65,20 +64,20 @@ public class User {
         this.phone = phone;
     }
 
-    public boolean isGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(boolean gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -95,6 +94,11 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", fullname=" + fullname + ", phone=" + phone + ", gender=" + gender + ", username=" + username + ", password=" + password + ", role=" + role + '}';
     }
      
 }

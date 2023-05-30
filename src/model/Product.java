@@ -1,27 +1,38 @@
 package model;
 
 public class Product {
-    //Id nhap vao man hinh 
+
     private String productId;
     
     private String name;
-    
-    private String ProductType;
-    
+        
     private float price;
-
+    
+    private String category;
+    
     private String detail;
     public Product() {
     }
+    
+//    private byte [] image;
+
+//    public byte[] getImage() {
+//        return image;
+//    }
+//
+//    public void setImage(byte[] image) {
+//        this.image = image;
+//    }
 
     
-    public Product(String productId, String name, String productType, float price, String detail) {
+     public Product(String productId, String name, float price, String category, String detail) {
         this.productId = productId;
         this.name = name;
-        this.ProductType = productType;
         this.price = price;
+        this.category = category;
         this.detail = detail;
     }
+    
 
     
     public String getProductId() {
@@ -40,12 +51,12 @@ public class Product {
         this.name = name;
     }
 
-    public String getProductType() {
-        return ProductType;
+    public String getCategory() {
+        return category;
     }
 
-    public void setProductType(String ProductType) {
-        this.ProductType = ProductType;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public float getPrice() {
@@ -62,6 +73,11 @@ public class Product {
 
     public void setDetail(String detail) {
         this.detail = detail;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" + "productId=" + productId + ", name=" + name + ", price=" + price + ", category=" + category + ", detail=" + detail + '}';
     }
     
     
