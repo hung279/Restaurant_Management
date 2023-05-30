@@ -14,15 +14,6 @@ public class Product {
     public Product() {
     }
     
-//    private byte [] image;
-
-//    public byte[] getImage() {
-//        return image;
-//    }
-//
-//    public void setImage(byte[] image) {
-//        this.image = image;
-//    }
 
     
      public Product(String productId, String name, float price, String category, String detail) {

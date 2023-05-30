@@ -4,3 +4,4 @@ SP3|broken rice 2|40000.0|Rice|Southern broken rice
 SP4|broken rice 3|40000.0|Rice|Southern broken rice
 SP5|broken rice 4|40000.0|Rice|Southern broken rice
 SP6|broken rice 5|40000.0|Rice|Southern broken rice
+SP7|broken rice 8|40000.0|Vunices||Southern broken rice
