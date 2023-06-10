@@ -7,6 +7,7 @@ package UI;
 import file.GetData;
 import file.ManageFileProduct;
 import java.awt.CardLayout;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.Product;
@@ -20,17 +21,38 @@ public final class Customer extends javax.swing.JFrame {
     /**
      * Creates new form Customer
      */
-    CardLayout cardLayout;
+    private static CardLayout cardLayout;
     private static GetData getData = new GetData();
     private static final ManageFileProduct manageFileProduct = new ManageFileProduct();
     private static List<Product> listProduct = getData.getDataProductFromFile();
     private static final String file_products = "D:\\HocTap\\JavaHaUI\\BTL_JAVA_SWING_N6\\Restaurant_Management\\src\\datas\\products.txt";
     private DefaultTableModel model = new DefaultTableModel();
-    
+    private DefaultTableModel modelCart = new DefaultTableModel();
+    private static int totalQuantity = 0;
+    private static float totalMoney = 0.0f;
     public Customer() {
         initComponents();
         cardLayout = (CardLayout) (jPanel3.getLayout());
+        System.out.println(cardLayout);
         addDataToTableProductCus();
+        initTableCart();
+        calculateCart(0, 0.0f);
+    }
+    
+    public void calculateCart(int quantity, float price) {
+        totalQuantity += quantity;
+        totalMoney += quantity * price;
+        quantityProduct.setText(Integer.toString(totalQuantity));
+        totalMoneyCart.setText(Float.toString(totalMoney));
+    }
+    
+    public void initTableCart() {
+        jTable3.setModel(modelCart);
+        
+        modelCart.addColumn("Product code");
+        modelCart.addColumn("Product name");
+        modelCart.addColumn("Quantity");
+        modelCart.addColumn("Price");
     }
     
     public void addDataToTableProductCus(){
@@ -85,8 +107,15 @@ public final class Customer extends javax.swing.JFrame {
         productQuantity = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        jPanel11 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
+        jPanel12 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        quantityProduct = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        totalMoneyCart = new javax.swing.JTextField();
+        payBtn = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jPanel47 = new javax.swing.JPanel();
@@ -277,6 +306,11 @@ public final class Customer extends javax.swing.JFrame {
         jTable1.setGridColor(new java.awt.Color(255, 153, 51));
         jTable1.setSelectionBackground(new java.awt.Color(51, 255, 51));
         jTable1.setShowGrid(true);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel12.setText("Product code");
@@ -290,6 +324,11 @@ public final class Customer extends javax.swing.JFrame {
         addProduct.setBackground(new java.awt.Color(102, 255, 102));
         addProduct.setForeground(new java.awt.Color(255, 255, 255));
         addProduct.setText("AddToCard");
+        addProduct.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addProductMouseClicked(evt);
+            }
+        });
         addProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addProductActionPerformed(evt);
@@ -372,7 +411,7 @@ public final class Customer extends javax.swing.JFrame {
                     .addContainerGap(575, Short.MAX_VALUE)))
         );
 
-        jPanel3.add(jPanel10, "card6");
+        jPanel3.add(jPanel10, "cardProduct");
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -402,7 +441,71 @@ public final class Customer extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable3);
 
-        jPanel3.add(jScrollPane3, "card4");
+        jLabel7.setText("Quantity");
+
+        jLabel8.setText("Total money");
+
+        payBtn.setText("Thanh toán");
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(payBtn)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(quantityProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(totalMoneyCart, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(112, Short.MAX_VALUE))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(quantityProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(totalMoneyCart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(payBtn)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(110, Short.MAX_VALUE))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(642, Short.MAX_VALUE))
+        );
+
+        jPanel3.add(jPanel11, "card6");
 
         jPanel47.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -995,18 +1098,18 @@ public final class Customer extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
-        cardLayout.show(jPanel3, "jScrollPane1");
+        cardLayout.show(jPanel3, "card3");
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
-        cardLayout.show(jPanel3, "jScrollPane3");
+        cardLayout.show(jPanel3, "card6");
 
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
-        cardLayout.show(jPanel3, "jTable1");
+        cardLayout.show(jPanel3, "cardProduct");
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jbuttonOrder5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonOrder5ActionPerformed
@@ -1031,6 +1134,40 @@ public final class Customer extends javax.swing.JFrame {
         productName.setText(dataModel.getValueAt(rows, 3).toString());
         productPrice.setText(dataModel.getValueAt(rows, 5).toString());
     }//GEN-LAST:event_jScrollPane1MouseClicked
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        int rows = jTable1.getSelectedRow();
+        DefaultTableModel dataModel = (DefaultTableModel)jTable1.getModel();
+        System.out.println(dataModel);
+        productId.setText(dataModel.getValueAt(rows, 1).toString());
+        productName.setText(dataModel.getValueAt(rows, 2).toString());
+        productPrice.setText(dataModel.getValueAt(rows, 4).toString());
+    }//GEN-LAST:event_jTable1MouseClicked
+    
+    private void addProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addProductMouseClicked
+        // TODO add your handling code here:
+        String productID = productId.getText();
+        String productName = this.productName.getText();
+        float productPrice = Float.parseFloat(this.productPrice.getText());
+        int quantity = Integer.parseInt(productQuantity.getText());
+        int totalQuantity = 0;
+        float totalMoney = 0.0f;
+        List<Product> productCart = new ArrayList<>();
+//        productCart.add(new(productID, productName, productPrice, quantity))
+        cardLayout.show(jPanel3, "card6");
+        
+        modelCart.addRow(new Object[]{
+            productID, productName,
+            quantity, productPrice});
+        calculateCart(quantity, productPrice);
+//        for (int count = 0; count < modelCart.getRowCount(); count++){
+//           totalQuantity += Integer.parseInt(modelCart.getValueAt(count, 2).toString());
+//           totalMoney += Integer.parseInt(modelCart.getValueAt(count, 2).toString()) * Integer.parseInt(modelCart.getValueAt(count, 3).toString());
+//        }
+//        quantityProduct.setText(Integer.toString(totalQuantity));
+//        totalMoneyCart.setText(Float.toString(totalMoney));
+    }//GEN-LAST:event_addProductMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1103,6 +1240,7 @@ public final class Customer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel69;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
@@ -1113,8 +1251,11 @@ public final class Customer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel77;
     private javax.swing.JLabel jLabel78;
     private javax.swing.JLabel jLabel79;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1148,9 +1289,12 @@ public final class Customer extends javax.swing.JFrame {
     private javax.swing.JButton jbuttonOrder16;
     private javax.swing.JButton jbuttonOrder5;
     private javax.swing.JPanel layout;
+    private javax.swing.JButton payBtn;
     private javax.swing.JTextField productId;
     private javax.swing.JTextField productName;
     private javax.swing.JTextField productPrice;
     private javax.swing.JTextField productQuantity;
+    private javax.swing.JTextField quantityProduct;
+    private javax.swing.JTextField totalMoneyCart;
     // End of variables declaration//GEN-END:variables
 }
