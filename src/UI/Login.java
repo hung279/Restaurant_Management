@@ -221,7 +221,11 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this,
                         String.format( "Login sucess!\n Hello %s  , Welcome back" , item.getFullname()));
                 Customer customer = new Customer();
+<<<<<<< HEAD
                 //customer.setVi(true);
+=======
+                customer.setVisible(true);
+>>>>>>> c0c7b4a92e097fdb6edbfa85eb182ca1cfead36b
                 flag= true; break;
             }
             

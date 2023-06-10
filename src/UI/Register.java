@@ -4,12 +4,16 @@
  */
 package UI;
 
+<<<<<<< HEAD
 import file.GetData;
 import file.ManageFileUser;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.Bill;
 
+=======
+import javax.swing.JOptionPane;
+>>>>>>> c0c7b4a92e097fdb6edbfa85eb182ca1cfead36b
 
 /**
  *
@@ -297,6 +301,7 @@ public class Register extends javax.swing.JFrame {
         return true;
     }
     private void button_register1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_register1ActionPerformed
+<<<<<<< HEAD
 
         
                 Object[] user = new Object[6];
@@ -327,6 +332,14 @@ public class Register extends javax.swing.JFrame {
            }else{
                     return;
              }
+=======
+        JOptionPane.showMessageDialog(this, "Register successful!");
+        jFullname_register.setText("");
+        jAddress_register.setText("");
+        jPhone_register.setText("");
+        jUsername_register.setText("");
+        jPassword_register.setText("");
+>>>>>>> c0c7b4a92e097fdb6edbfa85eb182ca1cfead36b
        
     }//GEN-LAST:event_button_register1ActionPerformed
 
@@ -371,6 +384,10 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton button_login_2;
     private javax.swing.JButton button_register1;
+<<<<<<< HEAD
+=======
+    private javax.swing.JTextField jAddress_register;
+>>>>>>> c0c7b4a92e097fdb6edbfa85eb182ca1cfead36b
     private javax.swing.JRadioButton jFemale_register;
     private javax.swing.JTextField jFullnameRegister;
     private javax.swing.JLabel jLabel1;
@@ -386,8 +403,12 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPassword_register;
+<<<<<<< HEAD
     private javax.swing.JTextField jPhoneRegister;
     private javax.swing.JTextField jUserIdRegister;
+=======
+    private javax.swing.JTextField jPhone_register;
+>>>>>>> c0c7b4a92e097fdb6edbfa85eb182ca1cfead36b
     private javax.swing.JTextField jUsername_register;
     private javax.swing.JRadioButton jradio_male_register;
     // End of variables declaration//GEN-END:variables
