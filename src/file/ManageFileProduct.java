@@ -29,7 +29,8 @@ public class ManageFileProduct extends ManageFile{
         super.closeFileAfterRead();
         return list;
     }
-//    //Account
+
+    
     public void writeProductToFile(String file , Product product){
         openFileToWrite(file);
         getPrintWriter().println(product.getProductId()+"|"+ product.getName()

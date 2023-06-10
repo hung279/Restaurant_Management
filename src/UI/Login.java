@@ -7,7 +7,7 @@ package UI;
 import file.GetData;
 import java.util.List;
 import javax.swing.JOptionPane;
-import model.User;
+import model.Customer;
 
 public class Login extends javax.swing.JFrame {
 
@@ -57,6 +57,7 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Create your new account free");
 
+        button_register2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         button_register2.setText("Register now");
         button_register2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,11 +95,12 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addGap(35, 35, 35)
-                .addComponent(button_register2)
+                .addComponent(button_register2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(6, 25, 80));
         jLabel4.setText("Login");
 
         jLabel5.setText("Username");
@@ -111,6 +113,9 @@ public class Login extends javax.swing.JFrame {
 
         jLabel6.setText("Password");
 
+        button_login1.setBackground(new java.awt.Color(18, 143, 93));
+        button_login1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        button_login1.setForeground(new java.awt.Color(255, 255, 255));
         button_login1.setText("Submit");
         button_login1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,14 +149,16 @@ public class Login extends javax.swing.JFrame {
                                     .addGap(73, 73, 73)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(122, 122, 122))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(button_login1)
-                                .addGap(121, 121, 121))))
+                                .addGap(122, 122, 122))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(button_login1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(129, 129, 129)))))
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -172,9 +179,9 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpassword_login, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(button_login1)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(button_login1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(96, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -192,7 +199,7 @@ public class Login extends javax.swing.JFrame {
 
     
     private static GetData getData = new GetData();
-    private static List<User> listUser = getData.getDataUserFromFile();
+    private static List<Customer> listUser = getData.getDataUserFromFile();
     private void button_login1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_login1ActionPerformed
         String username = jusername_login.getText();
         char[] passwordChars = jpassword_login.getPassword();
@@ -201,27 +208,27 @@ public class Login extends javax.swing.JFrame {
         if(username.equals("") || password.equals("")){
             JOptionPane.showMessageDialog(this, "You need enter fill all username and password");
         }else{
-        for (User user : listUser) {
+        for (Customer user : listUser) {
             System.out.println(user.toString());
         }
             System.out.println("username : " + username);
             System.out.println("password : " + password);
             boolean flag = false;
-        for(User item : listUser){
+        for(Customer item : listUser){
             if(item.getUsername().equals(username.trim()) 
                     && item.getPassword().equals(password.trim())
                     && item.getRole().equals("ROLE_USER")){
                 JOptionPane.showMessageDialog(this,
                         String.format( "Login sucess!\n Hello %s  , Welcome back" , item.getFullname()));
-                UserFrame userFrame = new UserFrame();
-                userFrame.setVisible(true);
+                Customer customer = new Customer();
+                //customer.setVi(true);
                 flag= true; break;
             }
             
             if(item.getUsername().equals(username.trim()) && 
                 item.getPassword().equals(password.trim()) && 
                 item.getRole().equals("ROLE_ADMIN")){
-                 JOptionPane.showMessageDialog(this,"HELLO ADMIN , WELCOME BACK!");
+                JOptionPane.showMessageDialog(this,"HELLO ADMIN , WELCOME BACK!");
                 Admin admin = new Admin();
                 admin.setVisible(true);
                 flag= true; break;

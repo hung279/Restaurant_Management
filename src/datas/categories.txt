@@ -1,5 +1,9 @@
 CG1|Rice|List of rice dishes
 CG2|Pho|List of Pho dishes
 CG3|Vunices|List of noodle dishes
-CG4|Breads|List of breads
-CG5|Water|List of drinks
+CG4|Bread chocolate|List of breads
+CG5|Test|Test
+CG6|Test1|test
+CG7|Tét|12
+CG8|Test32|Te23122
+Test|data|323
