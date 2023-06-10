@@ -43,7 +43,7 @@ public class Register extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jFullnameRegister = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jPhone_register = new javax.swing.JTextField();
+        jPhoneRegister = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jUsername_register = new javax.swing.JTextField();
         jradio_male_register = new javax.swing.JRadioButton();
@@ -125,6 +125,12 @@ public class Register extends javax.swing.JFrame {
         });
 
         jLabel6.setText("Phone");
+
+        jPhoneRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPhoneRegisterActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Gender");
 
@@ -223,7 +229,7 @@ public class Register extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPhone_register, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPhoneRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -263,13 +269,32 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_jradio_male_registerActionPerformed
 
     private void button_login_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_login_2ActionPerformed
-           Login login = new Login();
+ 
+       //XSSFWorkbook 
+        Login login = new Login();
            login.setVisible(true);
            
            Register register = new Register();
            register.dispose();
     }//GEN-LAST:event_button_login_2ActionPerformed
-
+    public Boolean checkInputUser(String userId ,String username , String password){
+ 
+       for(model.Customer customer : listUser){
+           if(customer.getId().equals(userId)){
+            JOptionPane.showMessageDialog(this, "UserID can not duplicate!");
+            return false;    
+           }
+           if(customer.getUsername().equals(username)){
+            JOptionPane.showMessageDialog(this, "Username can not duplicate!");
+            return false;   
+           }
+       }
+       if(password.equals("")){
+           JOptionPane.showMessageDialog(this, "Password is not null");
+           return false;
+       }
+        return true;
+    }
     private void button_register1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_register1ActionPerformed
        
                 Object[] user = new Object[6];

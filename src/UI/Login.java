@@ -7,7 +7,7 @@ package UI;
 import file.GetData;
 import java.util.List;
 import javax.swing.JOptionPane;
-import model.User;
+import model.Customer;
 
 public class Login extends javax.swing.JFrame {
 
@@ -200,7 +200,7 @@ public class Login extends javax.swing.JFrame {
 
     
     private static GetData getData = new GetData();
-    private static List<User> listUser = getData.getDataUserFromFile();
+    private static List<Customer> listUser = getData.getDataUserFromFile();
     private void button_login1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_login1ActionPerformed
         String username = jusername_login.getText();
         char[] passwordChars = jpassword_login.getPassword();
@@ -209,13 +209,13 @@ public class Login extends javax.swing.JFrame {
         if(username.equals("") || password.equals("")){
             JOptionPane.showMessageDialog(this, "You need enter fill all username and password");
         }else{
-        for (User user : listUser) {
+        for (Customer user : listUser) {
             System.out.println(user.toString());
         }
             System.out.println("username : " + username);
             System.out.println("password : " + password);
             boolean flag = false;
-        for(User item : listUser){
+        for(Customer item : listUser){
             if(item.getUsername().equals(username.trim()) 
                     && item.getPassword().equals(password.trim())
                     && item.getRole().equals("ROLE_USER")){

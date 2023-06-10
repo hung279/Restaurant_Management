@@ -2,7 +2,7 @@
 package model;
 
 public class Bill {
-    //Random Id 
+    
     private String billCode;
 
     private String customerName;
@@ -52,4 +52,13 @@ public class Bill {
     public void setTotal(float total) {
         this.total = total;
     }
+
+    @Override
+    public String toString() {
+        return "Bill{" + "billCode=" + billCode + ", customerName=" + customerName + ", createdBuy=" + createdBuy + ", total=" + total + '}';
+    }
+
+    
+    
+    
 }

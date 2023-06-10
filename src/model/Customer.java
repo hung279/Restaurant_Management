@@ -1,14 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
-/**
- *
- * @author Đoàn Hữu Minh
- */
-public class User {
+public class Customer {
     
     private String id;
     
@@ -24,11 +16,11 @@ public class User {
     
     private String role;
 
-    public User() {
+    public Customer() {
     }
     
    
-    public User(String id, String fullname, String phone, String gender, String username, String password, String role) {
+    public Customer(String id, String fullname, String phone, String gender, String username, String password, String role) {
         this.id = id;
         this.fullname = fullname;
         this.phone = phone;

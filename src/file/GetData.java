@@ -8,7 +8,7 @@ import java.util.List;
 import model.Bill;
 import model.Category;
 import model.Product;
-import model.User;
+import model.Customer;
 /**
  *
  * @author Doan Huu Minh
@@ -33,7 +33,7 @@ public class GetData {
         return manageFileProduct.readProductFromFile(file_products);
     }
     
-    public List<User> getDataUserFromFile(){
+    public List<Customer> getDataUserFromFile(){
         return manageFileUser.readUserFromFile(file_users);
     }
     
