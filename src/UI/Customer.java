@@ -88,13 +88,25 @@ public final class Customer extends javax.swing.JFrame {
         model.addColumn("Original Number");
         model.addColumn("Product code");
         model.addColumn("Product name");
+        model.addColumn("Quantity");
         model.addColumn("Category");
         model.addColumn("Price");
 
         int a = 0;
         for (Product product : listProduct) {
             model.addRow(new Object[]{++a,
-                product.getProductId(), product.getName(),
+                product.getProductId(), product.getName(), product.getQuatity(),
+                product.getCategory(), product.getPrice()});
+        }
+    }
+
+    public void updateTableProductCus() {
+        model.setRowCount(0);
+
+        int a = 0;
+        for (Product product : listProduct) {
+            model.addRow(new Object[]{++a,
+                product.getProductId(), product.getName(), product.getQuatity(),
                 product.getCategory(), product.getPrice()});
         }
     }
@@ -563,7 +575,7 @@ public final class Customer extends javax.swing.JFrame {
         System.out.println(dataModel);
         productId.setText(dataModel.getValueAt(rows, 2).toString());
         productName.setText(dataModel.getValueAt(rows, 3).toString());
-        productPrice.setText(dataModel.getValueAt(rows, 5).toString());
+        productPrice.setText(dataModel.getValueAt(rows, 6).toString());
     }//GEN-LAST:event_jScrollPane1MouseClicked
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -573,7 +585,7 @@ public final class Customer extends javax.swing.JFrame {
         System.out.println(dataModel);
         productId.setText(dataModel.getValueAt(rows, 1).toString());
         productName.setText(dataModel.getValueAt(rows, 2).toString());
-        productPrice.setText(dataModel.getValueAt(rows, 4).toString());
+        productPrice.setText(dataModel.getValueAt(rows, 5).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void addProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addProductMouseClicked
@@ -584,22 +596,33 @@ public final class Customer extends javax.swing.JFrame {
         int quantity = Integer.parseInt(productQuantity.getText());
         int totalQuantity = 0;
         float totalMoney = 0.0f;
-        List<Product> productCart = new ArrayList<>();
-//        productCart.add(new(productID, productName, productPrice, quantity))
+        for (Product product : listProduct) {
+            if (product.getProductId().contains(productID)) {
+                if (quantity <= product.getQuatity()) {
+                    product.setQuatity(product.getQuatity() - quantity);
+                    manageFileProduct.updateProductToFile(listProduct, file_products);
+                } else {
+                    JOptionPane.showMessageDialog(this,
+                            String.format("Not enough quantity"));
+                    return;
+                }
+                break;
+            }
+
+        }
+        JOptionPane.showMessageDialog(this,
+                String.format("Add to cart successfull"));
+        productId.setText("");
+        this.productName.setText("");
+        this.productPrice.setText("");
+        productQuantity.setText("");
         cardLayout.show(jPanel3, "card6");
 
         modelCart.addRow(new Object[]{
             productID, productName,
             quantity, productPrice});
         calculateCart(quantity, productPrice);
-        JOptionPane.showMessageDialog(this,
-                String.format("Add to cart successfull"));
-//        for (int count = 0; count < modelCart.getRowCount(); count++){
-//           totalQuantity += Integer.parseInt(modelCart.getValueAt(count, 2).toString());
-//           totalMoney += Integer.parseInt(modelCart.getValueAt(count, 2).toString()) * Integer.parseInt(modelCart.getValueAt(count, 3).toString());
-//        }
-//        quantityProduct.setText(Integer.toString(totalQuantity));
-//        totalMoneyCart.setText(Float.toString(totalMoney));
+        updateTableProductCus();
     }//GEN-LAST:event_addProductMouseClicked
     public boolean checkIdBill(String id) {
         boolean check = false;
@@ -617,17 +640,21 @@ public final class Customer extends javax.swing.JFrame {
         Bill bill = new Bill();
         float totalMoney = Float.parseFloat(totalMoneyCart.getText());
         UUID uuid = UUID.randomUUID();
-        
+
         Date date = new Date();
         bill.setBillCode(uuid.toString());
         bill.setCustomerName(CurrentUser.user.getFullname());
         bill.setCreatedBuy(simpleDateFormat.format(date));
         bill.setTotal(totalMoney);
         manageFileBill.writeBillToFile(file_bills, bill);
+        JOptionPane.showMessageDialog(this,
+                String.format("Pay successfull"));
         cardLayout.show(jPanel3, "cardBill");
+
         modelBill.addRow(new Object[]{
             bill.getBillCode(), bill.getCustomerName(),
             bill.getCreatedBuy(), bill.getTotal()});
+
     }//GEN-LAST:event_payBtnActionPerformed
 
     private void jLabel6ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jLabel6ComponentShown
