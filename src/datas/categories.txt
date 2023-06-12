@@ -1,5 +1,6 @@
 CG1|Rice|List of rice dishes
 CG2|Pho|List of Pho dishes
 CG3|Vunices|List of noodle dishes
-CG4|Breads|List of breads
-CG5|Water|List of drinks
+CG5|Pho|List of drinks
+CG7|Meat|this is a meat
+CG8|Drink tea|This is a drink tea

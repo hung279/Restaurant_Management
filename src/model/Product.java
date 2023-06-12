@@ -8,6 +8,8 @@ public class Product {
         
     private float price;
     
+    private int quatity;
+    
     private String category;
     
     private String detail;
@@ -16,12 +18,22 @@ public class Product {
     
 
     
-     public Product(String productId, String name, float price, String category, String detail) {
+     public Product(String productId, String name, float price,int quatity, 
+             String category, String detail) {
         this.productId = productId;
         this.name = name;
         this.price = price;
+        this.quatity = quatity;
         this.category = category;
         this.detail = detail;
+    }
+
+    public int getQuatity() {
+        return quatity;
+    }
+
+    public void setQuatity(int quatity) {
+        this.quatity = quatity;
     }
     
 
@@ -66,10 +78,6 @@ public class Product {
         this.detail = detail;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" + "productId=" + productId + ", name=" + name + ", price=" + price + ", category=" + category + ", detail=" + detail + '}';
-    }
     
     
 }

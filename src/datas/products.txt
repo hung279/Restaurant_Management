@@ -1,7 +1,7 @@
-SP1|broken rice|40000.0|Rice|Southern broken rice
-SP2|broken rice 1|40000.0|Rice|Southern broken rice
-SP3|broken rice 2|40000.0|Rice|Southern broken rice
-SP4|broken rice 3|40000.0|Rice|Southern broken rice
-SP5|broken rice 4|40000.0|Rice|Southern broken rice
-SP6|broken rice 5|40000.0|Rice|Southern broken rice
-SP7|broken rice 8|40000.0|Vunices||Southern broken rice
+SP1|Drink|20000.0|15|Rice|This is a food make from rice
+SP2|Meat Bread 1|44343.0|10|Rice|This is a food make from rice
+SP3|Meat Bread 2|2323.0|10|Rice|This is a food make from rice
+SP4|Meat Bread 3|5343.0|10|Rice|This is a food make from rice
+SP5|Meat Bread 4 |54234.0|10|Pho|This is a food make from rice
+SP6|Meat Bread 5|2323.0|10|Rice|This is a food make from rice
+SP1|Meat Bread|20000.0|15|Rice|This is a food make from rice 1

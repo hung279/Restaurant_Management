@@ -1,22 +1,20 @@
 
 package model;
 
-import java.util.Date;
-
 public class Bill {
     //Random Id 
     private String billCode;
 
     private String customerName;
     
-    private Date createdBuy;
+    private String createdBuy;
     
     private float total;
 
     public Bill() {
     }
 
-    public Bill(String billCode, String customerName, Date createdBuy, float total) {
+    public Bill(String billCode, String customerName, String createdBuy, float total) {
         this.billCode = billCode;
         this.customerName = customerName;
         this.createdBuy = createdBuy;
@@ -39,11 +37,11 @@ public class Bill {
         this.customerName = customerName;
     }
 
-    public Date getCreatedBuy() {
+    public String getCreatedBuy() {
         return createdBuy;
     }
 
-    public void setCreatedBuy(Date createdBuy) {
+    public void setCreatedBuy(String createdBuy) {
         this.createdBuy = createdBuy;
     }
 

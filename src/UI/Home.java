@@ -7,7 +7,6 @@ public class Home extends javax.swing.JFrame {
     
     public Home() {
         initComponents();
- 
     }
 
     @SuppressWarnings("unchecked")
@@ -1344,8 +1343,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void register_pageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_pageActionPerformed
-        Register register = new Register();
-        register.setVisible(true);
+       jTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_register_pageActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed

@@ -14,6 +14,7 @@ public class Login extends javax.swing.JFrame {
     
     public Login() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -222,6 +223,7 @@ public class Login extends javax.swing.JFrame {
                         String.format( "Login sucess!\n Hello %s  , Welcome back" , item.getFullname()));
                 Customer customer = new Customer();
                 customer.setVisible(true);
+                this.dispose();
                 flag= true; break;
             }
             
@@ -231,6 +233,7 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this,"HELLO ADMIN , WELCOME BACK!");
                 Admin admin = new Admin();
                 admin.setVisible(true);
+                this.dispose();
                 flag= true; break;
             }
             

@@ -36,7 +36,7 @@ public class ManageFileCategory extends ManageFile{
                 +"|" + category.getDetail());        
         super.closeFileAfterWriter();
     }
-    public void updateAccountToFile(List<Category> infoCategorysList ,String fileName){
+    public void updateCategoryToFile(List<Category> infoCategorysList ,String fileName){
 
         readCategoryFromFile(fileName);
         File file = new File(fileName);
