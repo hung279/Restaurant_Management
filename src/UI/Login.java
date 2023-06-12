@@ -8,9 +8,11 @@ import file.GetData;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.Customer;
+import utils.CurrentUser;
 
 public class Login extends javax.swing.JFrame {
 
+    public static Customer curUser;
     
     public Login() {
         initComponents();
@@ -221,10 +223,11 @@ public class Login extends javax.swing.JFrame {
                     && item.getRole().equals("ROLE_USER")){
                 JOptionPane.showMessageDialog(this,
                         String.format( "Login sucess!\n Hello %s  , Welcome back" , item.getFullname()));
-                Customer customer = new Customer();
-                customer.setVisible(true);
-                this.dispose();
-                flag= true; break;
+//                Customer customer = new Customer();
+                UI.Customer customerView = new UI.Customer();
+                CurrentUser.user = item;
+                customerView.setVisible(true);
+                flag = true; break;
             }
             
             if(item.getUsername().equals(username.trim()) && 

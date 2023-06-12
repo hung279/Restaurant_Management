@@ -296,7 +296,8 @@ public class Register extends javax.swing.JFrame {
         return true;
     }
     private void button_register1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_register1ActionPerformed
-       
+
+        
                 Object[] user = new Object[6];
                 user[0] = jusercodeRegister.getText();
                 user[1] = !"".equals(jFullnameRegister.getText()) ? jFullnameRegister.getText() : "null";
