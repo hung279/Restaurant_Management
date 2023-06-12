@@ -13,7 +13,12 @@ public class ManageFileProduct extends ManageFile{
     
     public Product createProductFromData(String data){
         String[] datas = data.split("\\|");
-        Product acc = new Product(datas[0], datas[1],Float.parseFloat(datas[2]), datas[3], datas[4]);
+        Product acc = new Product(
+                datas[0], datas[1],
+                Float.parseFloat(datas[2]),
+                Integer.parseInt(datas[3]),
+                datas[4],
+                datas[5]);
         return acc;
     }
 
@@ -29,11 +34,15 @@ public class ManageFileProduct extends ManageFile{
         super.closeFileAfterRead();
         return list;
     }
-//    //Account
+
+    
     public void writeProductToFile(String file , Product product){
         openFileToWrite(file);
-        getPrintWriter().println(product.getProductId()+"|"+ product.getName()
-              + "|"+ product.getPrice() +"|" + product.getCategory() + "|"
+        getPrintWriter().println(product.getProductId()
+                +"|"+ product.getName()
+                +"|"+ product.getPrice()
+                +"|" + product.getQuatity()
+                +"|" + product.getCategory()
                 +"|"+ product.getDetail());        
         super.closeFileAfterWriter();
     }
@@ -49,6 +58,7 @@ public class ManageFileProduct extends ManageFile{
             printWriter.println(product.getProductId()
                     +"|"  + product.getName()
                     + "|" + product.getPrice()
+                    +"|" + product.getQuatity()
                     + "|"  + product.getCategory()
                     +"|"+ product.getDetail()); 
         }

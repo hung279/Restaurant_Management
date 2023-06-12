@@ -4,7 +4,11 @@
  */
 package UI;
 
+import file.GetData;
+import file.ManageFileUser;
+import java.util.List;
 import javax.swing.JOptionPane;
+import model.User;
 
 /**
  *
@@ -12,11 +16,14 @@ import javax.swing.JOptionPane;
  */
 public class Register extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Register
-     */
+    private static GetData getData = new GetData();    
+    private static final ManageFileUser manageFileUser = new ManageFileUser();   
+    private static List<User> listUser = getData.getDataUserFromFile();
+    private static final String file_users = "E:\\HOC TAP\\LAP_TRINH_JAVA\\JAVA\\Restaurant_Management\\src\\datas\\users.txt";
+
     public Register() {
-        initComponents();
+        initComponents(); 
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -32,11 +39,11 @@ public class Register extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jFullname_register = new javax.swing.JTextField();
+        jusercodeRegister = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jAddress_register = new javax.swing.JTextField();
+        jFullnameRegister = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jPhone_register = new javax.swing.JTextField();
+        jPhoneRegister = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jUsername_register = new javax.swing.JTextField();
         jradio_male_register = new javax.swing.JRadioButton();
@@ -101,23 +108,29 @@ public class Register extends javax.swing.JFrame {
 
         jLabel3.setText("new account");
 
-        jLabel4.setText("Fullname");
+        jLabel4.setText("User code");
 
-        jFullname_register.addActionListener(new java.awt.event.ActionListener() {
+        jusercodeRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFullname_registerActionPerformed(evt);
+                jusercodeRegisterActionPerformed(evt);
             }
         });
 
-        jLabel5.setText("Address");
+        jLabel5.setText("Fullname");
 
-        jAddress_register.addActionListener(new java.awt.event.ActionListener() {
+        jFullnameRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jAddress_registerActionPerformed(evt);
+                jFullnameRegisterActionPerformed(evt);
             }
         });
 
         jLabel6.setText("Phone");
+
+        jPhoneRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPhoneRegisterActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Gender");
 
@@ -168,8 +181,8 @@ public class Register extends javax.swing.JFrame {
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jFullname_register, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                                    .addComponent(jAddress_register)
+                                    .addComponent(jusercodeRegister, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                                    .addComponent(jFullnameRegister)
                                     .addComponent(jPhone_register)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,15 +221,15 @@ public class Register extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jFullname_register, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jusercodeRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jAddress_register, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFullnameRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPhone_register, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPhoneRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -239,13 +252,13 @@ public class Register extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jFullname_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFullname_registerActionPerformed
+    private void jusercodeRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jusercodeRegisterActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFullname_registerActionPerformed
+    }//GEN-LAST:event_jusercodeRegisterActionPerformed
 
-    private void jAddress_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAddress_registerActionPerformed
+    private void jFullnameRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFullnameRegisterActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jAddress_registerActionPerformed
+    }//GEN-LAST:event_jFullnameRegisterActionPerformed
 
     private void jFemale_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFemale_registerActionPerformed
         // TODO add your handling code here:
@@ -256,51 +269,90 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_jradio_male_registerActionPerformed
 
     private void button_login_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_login_2ActionPerformed
-           Login login = new Login();
+ 
+       //XSSFWorkbook 
+        Login login = new Login();
            login.setVisible(true);
            
            Register register = new Register();
            register.dispose();
     }//GEN-LAST:event_button_login_2ActionPerformed
-
+    public Boolean checkInputUser(String userId ,String username , String password){
+ 
+       for(model.Customer customer : listUser){
+           if(customer.getId().equals(userId)){
+            JOptionPane.showMessageDialog(this, "UserID can not duplicate!");
+            return false;    
+           }
+           if(customer.getUsername().equals(username)){
+            JOptionPane.showMessageDialog(this, "Username can not duplicate!");
+            return false;   
+           }
+       }
+       if(password.equals("")){
+           JOptionPane.showMessageDialog(this, "Password is not null");
+           return false;
+       }
+        return true;
+    }
     private void button_register1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_register1ActionPerformed
-        JOptionPane.showMessageDialog(this, "Register successful!");
-        jFullname_register.setText("");
-        jAddress_register.setText("");
-        jPhone_register.setText("");
-        jUsername_register.setText("");
-        jPassword_register.setText("");
+
+        
+                Object[] user = new Object[6];
+                user[0] = jusercodeRegister.getText();
+                user[1] = !"".equals(jFullnameRegister.getText()) ? jFullnameRegister.getText() : "null";
+                user[2] = !"".equals(jPhone_register.getText()) ? jPhone_register.getText() : "null";
+                if(jradio_male_register.isSelected() == true){
+                      user[3] = "Male";
+                }else if(jFemale_register.isSelected() == true){
+                    user[3] = "Female";
+                }else{
+                      user[3] = "Other";
+                 }
+                user[4] = jUsername_register.getText();
+                char[] characterPass = jPassword_register.getPassword();
+                String password = new  String(characterPass);
+                user[5] = password; 
+                if(checkInputUser(user[0].toString() , user[4].toString(), password)){
+                     
+               User newUser = new User(user[0].toString() , user[1].toString() , user[2].toString() , 
+                                        user[3].toString() , user[4].toString() ,
+                       user[5].toString(), "ROLE_USER");                
+                manageFileUser.writeUserToFile(file_users, newUser);
+                JOptionPane.showMessageDialog(this, "Register successfull");
+                this.dispose();
+                Login login = new Login();
+                login.setVisible(true);
+           }else{
+                    return;
+             }
+            jusercodeRegister.setText("");
+            jFullnameRegister.setText("");
+            jPhone_register.setText("");
+            jUsername_register.setText("");
+            jPassword_register.setText("");
        
     }//GEN-LAST:event_button_register1ActionPerformed
+    public Boolean checkInputUser(String userId ,String username , String password){
 
-    /**
-     * @param args the command line arguments
-     */
+          for(User customer : listUser){
+              if(customer.getId().equals(userId)){
+               JOptionPane.showMessageDialog(this, "UserID can not duplicate!");
+               return false;    
+              }
+              if(customer.getUsername().equals(username)){
+               JOptionPane.showMessageDialog(this, "Username can not duplicate!");
+               return false;   
+              }
+          }
+          if(password.equals("")){
+              JOptionPane.showMessageDialog(this, "Password is not null");
+              return false;
+          }
+           return true;
+       }
+   
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new Register().setVisible(true);
         });
@@ -310,9 +362,8 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton button_login_2;
     private javax.swing.JButton button_register1;
-    private javax.swing.JTextField jAddress_register;
     private javax.swing.JRadioButton jFemale_register;
-    private javax.swing.JTextField jFullname_register;
+    private javax.swing.JTextField jFullnameRegister;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -329,5 +380,6 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JTextField jPhone_register;
     private javax.swing.JTextField jUsername_register;
     private javax.swing.JRadioButton jradio_male_register;
+    private javax.swing.JTextField jusercodeRegister;
     // End of variables declaration//GEN-END:variables
 }
